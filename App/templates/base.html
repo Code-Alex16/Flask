@@ -10,10 +10,19 @@
     <header>
         <div class="contenedor_logo">
             <img src="{{ url_for('static', filename= 'img/blog.webp') }}" height="80px" width="80px">
-        </div>
-        <div class="contenedor_titulo">
             <h1 id="titulo_principal">BlogFlask</h1>
         </div>
     </header>
+    <div>
+        <h2>New Posts</h2>
+        <div>
+            {% for post in Posts %}
+            <h3>{{post['title']}}</h3>
+            <p>{{post['update']}}</p>
+            <p>{{post['body']}}</p>
+            {% endfor %}
+        </div>
+        
+    </div>
 </body>
 </html>
