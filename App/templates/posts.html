@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{{ post.title }}{% endblock %}  <!-- Suponiendo que 'post' es un objeto o dict con un atributo 'title' -->
+
+{% block main %}
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>  <!-- Suponiendo que 'post' tiene un contenido -->
+{% endblock %}
