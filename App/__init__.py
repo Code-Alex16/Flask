@@ -1,33 +1,41 @@
 from flask import Flask, render_template
+from DB.db_config import Database
 
 app = Flask(__name__)
 
-#Esto sera de prueba pra el paso de datos a los html, despues sera cambiado por una base de datos
-POSTS = [
-    {
-        'id' : 1,
-        'title' : 'Posting 1',
-        'update' : '16/09/2004',
-        'body' : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum repellat nesciunt ullam provident aperiam officiis iste itaque saepe esse, ea ex ab eos officia ducimus eaque temporibus labore reiciendis magnam!'
-    },
-    {
-        'id' : 2,
-        'title' : 'Posting 2',
-        'update' : '16/09/2005',
-        'body' : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum repellat nesciunt ullam provident aperiam officiis iste itaque saepe esse, ea ex ab eos officia ducimus eaque temporibus labore reiciendis magnam!'
-    },
-    {        
-        'id' : 3,
-        'title' : 'Posting 3',
-        'update' : '16/09/2006',
-        'body' : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum repellat nesciunt ullam provident aperiam officiis iste itaque saepe esse, ea ex ab eos officia ducimus eaque temporibus labore reiciendis magnam!'
-    }
-]
+#Conexion a la clase DATABASE
+#db = Database()
 
 @app.route('/')
 def Index():
-    return render_template('base.html', Posts = POSTS)
+    # Estableciendo una conexion
+    '''
+    conexion = db.GetConnexion()
+    posts = []
+    
+    if conexion:
+        try:
+            cursor = conexion.cursor()
+            sql = "SELECT title FROM tbl_posts"
+            cursor.execute(sql)
 
+            posts = cursor.fetchall()
+        
+        except Exception as ex:
+            print(f'Error al ejecutar la consulta {ex}')
+        
+        finally:
+            cursor.close()
+            db.CloseConexion(connection=conexion)
+    '''
+    return render_template('index.html')
+
+#nos dirigimos a un post especifico para leer su imformacion
+@app.route('/<title>')
+def page_post(title):
+    #ejemplo ficticion
+    post = {'title': title, 'content': 'Contenido del post aquí.'}
+    return render_template('posts.html',post = post)
 
 if __name__ == '__main__':
     app.run(debug=True,port=8000)
