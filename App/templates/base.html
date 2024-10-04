@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_base.css') }}">
-    <title>Blog Flask</title>
+    <title>{% block title %} {% endblock%}</title>
 </head>
 <body>
     <header>
@@ -13,16 +13,9 @@
             <h1 id="titulo_principal">BlogFlask</h1>
         </div>
     </header>
-    <div>
-        <h2>New Posts</h2>
-        <div>
-            {% for post in Posts %}
-            <h3>{{post['title']}}</h3>
-            <p>{{post['update']}}</p>
-            <p>{{post['body']}}</p>
-            {% endfor %}
-        </div>
-        
-    </div>
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
 </body>
 </html>
