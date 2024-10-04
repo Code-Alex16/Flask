@@ -4,12 +4,12 @@ from DB.db_config import Database
 app = Flask(__name__)
 
 #Conexion a la clase DATABASE
-#db = Database()
+db = Database()
 
 @app.route('/')
 def Index():
     # Estableciendo una conexion
-    '''
+    
     conexion = db.GetConnexion()
     posts = []
     
@@ -27,7 +27,7 @@ def Index():
         finally:
             cursor.close()
             db.CloseConexion(connection=conexion)
-    '''
+
     return render_template('index.html')
 
 #nos dirigimos a un post especifico para leer su imformacion
