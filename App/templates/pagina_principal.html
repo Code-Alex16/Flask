@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Pagina principal {% endblock%}
+
+{% block main %}
+
+<h2>Nuevas Publicaciones</h2>
+<div>
+    {% if posts %}
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <a href="{{ url_for('show_post', title=post[0]) }}">{{ post[0] }}</a> 
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay publicaciones disponibles en este momento.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
