@@ -10,10 +10,10 @@
         <ul>
             {% for post in posts %}
                 <li>
-                    <a href="{{ url_for('show_post', title=post[0]) }}">{{ post[0] }}</a> 
+                    <a href="{{ url_for('show_post', id=post[0]) }}">{{ post[1] }}</a> 
                 </li>
             {% endfor %}
-        </ul>
+        </ul> 
     {% else %}
         <p>No hay publicaciones disponibles en este momento.</p>
     {% endif %}

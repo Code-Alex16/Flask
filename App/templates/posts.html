@@ -8,5 +8,7 @@
     <p>Create by: {{ post.author }}</p>
     <p>{{post.date_at}}</p>
     <p>{{ post.content }}</p>
-    <button><a href="posts_edit.html">Edit Post</a></button>
+    <button>
+        <a href="{{ url_for('edit_post', id=post.id) }}">Edit Post</a>
+    </button>
 {% endblock %}
