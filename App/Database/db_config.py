@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import mysql.connector.pooling
 from mysql.connector import Error
 
-class DataBase:
+class Database:
     
     load_dotenv()
 
