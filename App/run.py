@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
 
-from Database.db_config import DataBase
+from Database.db_config import Database
 
 app: Flask = Flask(__name__)
 
-db: DataBase = DataBase()
+db: Database = Database()
 
 #Pagina principal
 @app.route('/')
