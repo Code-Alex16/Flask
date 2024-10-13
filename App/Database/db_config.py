@@ -24,6 +24,7 @@ class Database:
                 cls.POOL = mysql.connector.pooling.MySQLConnectionPool(
                     pool_name= cls.POOL_NAME,
                     pool_size= cls.POOL_SIZE,
+                    pool_reset_session= True,
                     host = cls.HOST,
                     port = cls.PORT,
                     database = cls.DATABASE,
