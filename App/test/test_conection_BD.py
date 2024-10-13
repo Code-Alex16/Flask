@@ -1,10 +1,10 @@
 
 # Importa la base de datos después de añadir la ruta
-from App.Database.db_config import DataBase
+from App.Database.db_config import Database
 
 
 # Código para probar la conexión
-DB = DataBase()
+DB = Database()
 connection_db = DB.GetConnexion()
 
 sql = "SELECT * FROM tbl_posts"
