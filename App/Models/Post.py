@@ -2,18 +2,19 @@ from Database.db_config import Database
 
 class Post:
     # Consultas SQL
-    SELECT_POST_SIMPLE = 'SELECT id, title FROM tbl_post LIMIT 10 OFFSET 0'
-    SELECT_POST_TITLE = 'SELECT id, title, content, date_at FROM tbl_post WHERE title = %s'
-    SELECT_POST_ID = 'SELECT id, title, content, date_at FROM tbl_post WHERE id = %s'
-    ADD_POST = 'INSERT INTO tbl_post (author, title, content, tag) VALUES (%s, %s, %s, %s)'
-    UPDATE_POST = 'UPDATE tbl_post SET title = %s, content = %s WHERE id = %s'
-    DELETE_POST = 'DELETE FROM tbl_post WHERE title = %s'
+    SELECT_POST_SIMPLE = 'SELECT id, title FROM tbl_posts LIMIT 10 OFFSET 0'
+    SELECT_POST_TITLE = 'SELECT id, title, content, created_at FROM tbl_posts WHERE title = %s'
+    SELECT_POST_ID = 'SELECT id, title, content, created_at FROM tbl_posts WHERE id = %s'
+    ADD_POST = 'INSERT INTO tbl_posts (title, content) VALUES (%s, %s)'
+    UPDATE_POST = 'UPDATE tbl_posts SET title = %s, content = %s WHERE id = %s'
+    DELETE_POST = 'DELETE FROM tbl_posts WHERE title = %s'
 
-    def __init__(self, id=None, author=None, title=None, content=None, tag=None):
+    def __init__(self, id=None, author=None, title=None, content=None, created_at = None, tag=None):
         self.id = id
         self.author = author
         self.title = title
         self.content = content
+        self.created_at = created_at
         self.tag = tag
 
     @classmethod
@@ -47,7 +48,7 @@ class Post:
         """Obtiene un post por su ID"""
         result = cls._execute_query(cls.SELECT_POST_ID, (post_id,), fetch_one=True)
         if result:
-            return cls(id=result[0], title=result[1], content=result[2], date_at=result[3])
+            return cls(id=result[0], title=result[1], content=result[2], created_at=result[3])
         return None
 
     @classmethod
@@ -60,7 +61,7 @@ class Post:
 
     def save_post(self):
         """Guarda un nuevo post en la base de datos"""
-        result = self._execute_query(self.ADD_POST, (self.author, self.title, self.content, self.tag))
+        result = self._execute_query(self.ADD_POST, (self.title, self.content))
         return result is not None
 
     def update_post(self):
