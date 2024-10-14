@@ -7,7 +7,7 @@ from App.Database.db_config import Database
 DB = Database()
 connection_db = DB.GetConnexion()
 
-sql = "SELECT * FROM tbl_posts"
+sql = "describe tbl_posts"
 cursor_ = connection_db.cursor()
 cursor_.execute(sql)
 
