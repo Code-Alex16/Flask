@@ -73,6 +73,12 @@ def edit_post(id):
     #para el metodo get usamos los datos obtendidos del objeto
     return render_template('posts_edit.html', post=post)
 
+@app.delete('')
+def delete_post(id):
+    """Eliminar una publicacion existente"""
+    Post.delete_post(id)
+    return redirect(url_for('pagina_principal'))
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)

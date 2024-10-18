@@ -7,7 +7,7 @@ class Post:
     SELECT_POST_ID = 'SELECT id, title, content, created_at FROM tbl_posts WHERE id = %s'
     ADD_POST = 'INSERT INTO tbl_posts (title, content) VALUES (%s, %s)'
     UPDATE_POST = 'UPDATE tbl_posts SET title = %s, content = %s WHERE id = %s'
-    DELETE_POST = 'DELETE FROM tbl_posts WHERE title = %s'
+    DELETE_POST = 'DELETE FROM tbl_posts WHERE id = %s'
 
     def __init__(self, id=None, author=None, title=None, content=None, created_at = None, tag=None):
         self.id = id
@@ -71,7 +71,7 @@ class Post:
 
     def delete_post(self):
         """Elimina el post actual en la base de datos"""
-        result = self._execute_query(self.DELETE_POST, (self.title,))
+        result = self._execute_query(self.DELETE_POST, (self.id,))
         return result is not None
 
     @classmethod
