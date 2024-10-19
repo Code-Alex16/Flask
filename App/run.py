@@ -1,24 +1,53 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_caching import Cache
 from Models.Post import Post
+from Models.User import User
 from Database.db_config import Database
 
 #inicializacion de la App con flask
 app: Flask = Flask(__name__)
 
 #Manejo de cache de memoria, optimizacion de recursos
-app.config['CACHE_TYPE'] = 'SimpleCache'
+#app.config['CACHE_TYPE'] = 'SimpleCache'
 #tiempo en segundos de timepor fuera - 300 (5 minutos)
-app.config['CACHE_DEFAULT_TIMEOUT'] = 300
+#app.config['CACHE_DEFAULT_TIMEOUT'] = 300
 
-cache = Cache(app)
+#cache = Cache(app)
 
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
+"""
+Usuarios - Authores
+"""
+@app.route('/Login', methods = ["POST"])
+def Login_user():
+    if request.method == 'POST':
+        user_email = request.form.get('user_email')
+        password = request.form.get('user_password')
+    return render_template("Login.html")
 
+@app.route('/Regristro', methods = ["POST"])
+def Registre_user():
+    if request.method == 'POST':
+        user_name = request.form.get('user_name')
+        email_user = request.form.get('user_email')
+        password = request.form.get('user_password')
+
+        new_user = User(username=user_name, email=email_user,password=password)
+
+        if new_user.save_user():
+            return redirect(url_for('Login_user'))
+        else:
+            print('Error al registrar usuario')
+            
+    return render_template('Register.html')
+
+""""
+Post
+"""
 @app.route('/post')
 def pagina_principal():
     """Lista de Publicaciones"""
