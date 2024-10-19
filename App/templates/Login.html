@@ -1,0 +1,27 @@
+
+{% extends 'base.html' %}
+
+{% block title %} Pagina principal {% endblock%}
+
+{% block main %}
+
+<div>
+    
+    <div>
+        <h2>Login</h2>
+    </div>
+    <div>
+        <form action="/Login" method="post">
+
+            <label for="email">Email</label>
+            <input type="email" name="email" placeholder="example@gmail.com" required>
+            
+            <label for="password">Password</label>
+            <input type="password" name="password" required>
+
+            <input type="submit" value="Iniciar sesion">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
