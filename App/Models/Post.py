@@ -10,12 +10,12 @@ class Post:
     DELETE_POST = 'DELETE FROM tbl_posts WHERE id = %s'
 
     def __init__(self, id=None, author=None, title=None, content=None, created_at = None, tag=None):
-        self.id = id
-        self.author = author
-        self.title = title
-        self.content = content
+        self.id         = id
+        self.author     = author
+        self.title      = title
+        self.content    = content
         self.created_at = created_at
-        self.tag = tag
+        self.tag        = tag
 
     @classmethod
     def _execute_query(cls, query, params=None, fetch_one=False):
