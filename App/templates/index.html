@@ -1,27 +1,24 @@
-<!--TODO: implement Login-->
-
 {% extends 'base.html' %}
 
 {% block title %} Pagina principal {% endblock%}
 
 {% block main %}
-
 <div>
-    <div>
-        <h2>Login</h2>
-    </div>
-    <div>
-        <form action="/" method="post">
-
-            <label for="email">Username</label>
-            <input type="email" name="email" placeholder="example@gmail.com">
-            
-            <label for="password">Password</label>
-            <input type="password" name="password">
-
-            <input type="submit" value="Iniciar sesion">
-        </form>
-    </div>
+    <nav>
+        <ul>
+            <li>
+                <a href="{{url_for('pagina_principal')}}">Publicaciones</a>
+            </li>
+            <li>
+                <a href="{{url_for('Login_user')}}">Login</a>
+            </li>
+            <li>
+                <a href="{{url_for('Registre_user')}}">Registrase</a>
+            </li>
+        </ul>
+    </nav>
 </div>
 
 {% endblock %}
+
+
